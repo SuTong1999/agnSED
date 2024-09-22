@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: agnSED
+Version: 0.1.0
+Summary: This package is used to calculated the SED of BH accretion processes, with BH mass and accretion rate as input parameters. Model descriptions could be found on Su et al.2024 (links).
+Home-page: https://github.com/yourusername/your-package-name  # Replace with your URL
+Author: Tong Su
+Author-email: sutong@bao.ac.cn
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.26.4
+Requires-Dist: scipy==1.10.0
+
+# agnSED
+
+Contact sutong@bao.ac.cn/aosagnai@gmail.com for questions and collaborations. For documents see (link)
+
+This model is used to calculate the spectral energy distribution (SED) of BH accretion proccesses. The input parameters are BH mass and accretion rate. The accretion flow is divided into two regime based on the value of Eddington-normalized accretion rate - the ADAFs for low accretion rate objects and the modified magnetic reconnection-heated disk-corona model for high accretion rate objects.
+Detailed explanation and application on simulated galaxy catalog please refer to Su et al.2024. 
+
+## Citation
+
+If you use this package in your research and publications, please cite:
+
+- **Tong Su**, *Title of Your Paper*, Journal/Conference Name, Year, DOI: [link](https://doi.org/your-doi)
+- GitHub Repository: [https://github.com/SuTong1999/agnSED](https://github.com/SuTong1999/agnSED)
+
+## Example Usage
+
+An example Jupyter Notebook demonstrating how to use this package is available in the github repository.
+- [View on GitHub](https://github.com/SuTong1999/agnSED/blob/main/examples/example.ipynb)
+
+
