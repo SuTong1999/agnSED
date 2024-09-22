@@ -15,6 +15,6 @@ If you use this package in your research and publications, please cite:
 ## Example Usage
 
 An example Jupyter Notebook demonstrating how to use this package is available in the github repository.
-- [View on GitHub](https://github.com/SuTong1999/agnSED/blob/main/examples/example.ipynb)
+- [[View on GitHub](https://github.com/SuTong1999/agnSED/tree/main/example)
 
 
