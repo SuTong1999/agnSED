@@ -2,7 +2,7 @@ import numpy as np
 from .setUp import *
 from .utils import *
 from .agnSED import *
-from .photometry import *
+from .photometry import LuminosityPerHerz
 
 Mathis_lambda = np.array([0.091, 0.10, 0.13, 0.143, 0.18, 0.20, 0.21, 0.216, 0.23, 0.25,\
     0.346, 0.435, 0.55, 0.7, 0.9, 1.2, 1.8, 2.2, 2.4, 3.4,\
@@ -35,11 +35,12 @@ def Mathis_Av(wave):
     return Av, albedo
 
 
-def magLgal(sample, wave, component=True, mcut=4, mdotcut=-12, npro=1):
+def magLgal(sample, wave, redshift, component=True, mcut=4, mdotcut=-12, npro=1):
     """ calculate the AB magnitude at a given frequency, the dust extinction model is the same as in Lgalaxies """
     """ inputs: sample: n*4 numpy array, logarithm of BH mass, accretion rate, hydrogen density, metallicity,
                          [[logm1, logmdot1, logNH1, logZ1] , ...]
                 wave: wavelength in A
+                redshift: redshift of the snapshot
                 mcut: BH mass lower limit, if logm<mcut, skip calculation
                 mdotcut: BHAR lower limit
                 npro: number of cores to multiprocess """  
@@ -54,7 +55,7 @@ def magLgal(sample, wave, component=True, mcut=4, mdotcut=-12, npro=1):
     if (wave<2000.) : s=1.35
     else: s=1.6
 
-    tau_ISM = A_Av * Z_Zsun**s * np.sqrt((1.-albedo)) * 10**(logNH-21)/2.1
+    tau_ISM = A_Av * Z_Zsun**s * np.sqrt((1.-albedo)) * 10**(logNH-21)/2.1 / (1+redshift)
     cos_in = np.random.uniform(low=0., high=1.0, size=len(logNH)) 
     cos_in[cos_in<=0.2] = 0.2
     tau_sec = tau_ISM / cos_in
