@@ -4,7 +4,6 @@ from multiprocessing import Pool
 from .setUp import *
 from .utils import *
 from .agnSED import *
-from .Lgaldust import *
 
 def SEDRegimePool(args):
     logm, logmdot, k0, k1 = args
