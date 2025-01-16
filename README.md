@@ -9,7 +9,7 @@ Detailed explanation and application on simulated galaxy catalog please refer to
 
 If you use this package in your research and publications, please cite:
 
-- **Tong Su**, *AGN luminosity in the simulated Universe*, Journal/Conference Name, Year, DOI: [link](tbd)
+- **Tong Su**, *Modeling the Spectral Energy Distribution of Active Galactic Nuclei: Implications for Cosmological Simulations of Galaxy Formation*, DOI: [link](tbd)
 - GitHub Repository: [https://github.com/SuTong1999/agnSED](https://github.com/SuTong1999/agnSED)
 
 ## Example Usage

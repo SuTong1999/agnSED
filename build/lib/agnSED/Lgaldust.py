@@ -30,8 +30,6 @@ def Mathis_Av(wave):
     z1 = MathisAlbedo[ind]
     z2 = MathisAlbedo[ind+1]
     
-    # Av = ((wave_um - x1) * y2 + (x2-wave_um) * y1) / (x2 - x1)
-    # albedo = ((wave_um - x1) * z2 + (x2 - wave_um) * z1) / (x2-x1)
     Av = (y2-y1)/(x2-x1) * (wave_um-x1) + y1
     albedo = (z2-z1)/(x2-x1) * (wave_um-x1) + z1
     return Av, albedo
@@ -41,7 +39,7 @@ def magLgal(sample, wave, redshift, component=True, mcut=4, mdotcut=-12, npro=1)
     """ calculate the AB magnitude at a given frequency, the dust extinction model is the same as in Lgalaxies """
     """ inputs: sample: n*4 numpy array, logarithm of BH mass, accretion rate, hydrogen density, metallicity,
                          [[logm1, logmdot1, logNH1, logZ1] , ...]
-                wave: wavelength in A, rest frame
+                wave: wavelength in A
                 redshift: redshift of the snapshot
                 mcut: BH mass lower limit, if logm<mcut, skip calculation
                 mdotcut: BHAR lower limit
@@ -51,7 +49,7 @@ def magLgal(sample, wave, redshift, component=True, mcut=4, mdotcut=-12, npro=1)
     ind = np.argwhere( (sample[:,0]>mcut)&(sample[:,1]>mdotcut) ).reshape(-1)
     sample = sample[ind]
     logNH = sample[:,2]
-    Z_Zsun = 10**sample[:,3] /0.02  # metallicity from sample is not normalized by solar value
+    Z_Zsun = 10**sample[:,3] * 0.02/0.01524
 
     A_Av, albedo = Mathis_Av(wave)
     if (wave<2000.) : s=1.35
