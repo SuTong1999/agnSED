@@ -9,7 +9,7 @@ Detailed explanation and application on simulated galaxy catalog please refer to
 
 If you use this package in your research and publications, please cite:
 
-- **Tong Su**, *Modeling the Spectral Energy Distribution of Active Galactic Nuclei: Implications for Cosmological Simulations of Galaxy Formation*, DOI: [link](tbd)
+- **Tong Su**, *Modeling the Spectral Energy Distribution of Active Galactic Nuclei: Implications for Cosmological Simulations of Galaxy Formation*, arxiv: [link](https://arxiv.org/pdf/2501.10793), DOI: (tbd)
 - GitHub Repository: [https://github.com/SuTong1999/agnSED](https://github.com/SuTong1999/agnSED)
 
 ## Example Usage
@@ -19,7 +19,7 @@ An example Jupyter Notebook demonstrating how to use this package is available i
 
 ## Release Note
 
-2025/1/22: 
-Scipy 1.15.1 changed its the internal attributes of the RegulatorGridInterpolator function, this will produce error message "AttributeError: 'RegularGridInterpolator' object has no attribute '_spline'" when executing example.ipynb. To avoid this, the install requirement in the setup.cfg constrained Scipy version to scipy>=1.10.0,<=1.14.1. This issue will be fixed in the (foreseeable) future. *Installing this package could automatically downgrade/upgrade your scipy (if you are using a higher/lower version), so the recommended method is to install it in a new python environment.*
+(2025/1/22)
+Scipy 1.15.1 changed the internal attributes of the RegulatorGridInterpolator function, this will produce error message "AttributeError: 'RegularGridInterpolator' object has no attribute '_spline'" when executing example.ipynb. To avoid this, the install requirement in the setup.cfg constrained Scipy version to scipy>=1.10.0,<=1.14.1. This issue will be fixed in the (foreseeable) future. *Installing this package could automatically downgrade/upgrade your scipy (if you are using a higher/lower version), so the recommended method is to install it in a new python environment.*
 
 
