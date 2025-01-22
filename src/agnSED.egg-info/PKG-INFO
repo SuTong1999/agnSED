@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: agnSED
 Version: 0.1.0
 Summary: This package is used to calculated the SED of BH accretion processes, with BH mass and accretion rate as input parameters. Model descriptions could be found on Su et al.2024 (links).
@@ -13,7 +13,7 @@ Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: numpy>=1.26.4
-Requires-Dist: scipy>=1.10.0
+Requires-Dist: scipy<=1.14.1,>=1.10.0
 
 # agnSED
 
@@ -26,7 +26,7 @@ Detailed explanation and application on simulated galaxy catalog please refer to
 
 If you use this package in your research and publications, please cite:
 
-- **Tong Su**, *The multiband luminosity of active galactic nuclei in the simulateduniverse*, DOI: [link](tbd)
+- **Tong Su**, *Modeling the Spectral Energy Distribution of Active Galactic Nuclei: Implications for Cosmological Simulations of Galaxy Formation*, DOI: [link](tbd)
 - GitHub Repository: [https://github.com/SuTong1999/agnSED](https://github.com/SuTong1999/agnSED)
 
 ## Example Usage

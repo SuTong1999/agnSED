@@ -5,32 +5,6 @@ from .setUp import *
 from .utils import *
 from .agnSED import *
 
-def SEDRegimePool(args):
-    logm, logmdot, k0, k1 = args
-    if logmdot<=logmdot_crit:  # ADAF regime
-        logLnu = SED_adaf(logm, logmdot, int(k0), int(k1))
-        regime = 0
-    else:  # Disk-corona regime
-        logLnu = SED_diskcor(logm, logmdot, int(k0), int(k1))
-        regime = 1
-    return np.array([regime, logLnu], dtype=object)
-
-def SEDPool(args):
-    """calculate the spectral energy distribution (SED)"""
-    """use different accretion model for different accretion rate"""
-    logm, logmdot, k0, k1 = args
-    k0 = int(k0)
-    k1 = int(k1)
-    if logmdot<=logmdot_crit: func = func_adaf
-    else: func = func_diskcor
-    logLnu = np.array(list(map(lambda f: f([logm, logmdot]), func[k0:k1+1])))
-    logLnu[np.isnan(logLnu)] = -100
-    if (logmdot>=logmdot_trunc) & (logmdot<=logmdot_crit):  
-        logLnu_trunc = np.array(list(map(lambda f: f([logm, logmdot]), func_trunc[k0:k1+1])))
-        logLnu_trunc[np.isnan(logLnu_trunc)] = -100
-        logLnu = np.log10( 10**logLnu + 10**logLnu_trunc )
-    return logLnu.reshape(-1)
-
 def Bolometric(sample, component=True, mcut=4, mdotcut=-12, npro=1):
     """ calculate the bolometric luminosity """
     """ inputs: sample: n*2 numpy array, logarithm of BH mass and accretion rate. [[logm1, logmdot1], [logm2, logmdot2], ...]
