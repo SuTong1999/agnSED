@@ -9,7 +9,7 @@ Detailed explanation and application on simulated galaxy catalog please refer to
 
 If you use this package in your research and publications, please cite:
 
-- **Tong Su**, *Modeling the Spectral Energy Distribution of Active Galactic Nuclei: Implications for Cosmological Simulations of Galaxy Formation*, [arxiv](https://arxiv.org/pdf/2501.10793), DOI: (tbd)
+- **Tong Su**, *Modeling the Spectral Energy Distribution of Active Galactic Nuclei: Implications for Cosmological Simulations of Galaxy Formation*, DOI: [10.3847/1538-4357/ae41bd](https://doi.org/10.3847/1538-4357/ae41bd)
 - GitHub Repository: [https://github.com/SuTong1999/agnSED](https://github.com/SuTong1999/agnSED)
 
 ## Example Usage
@@ -18,6 +18,8 @@ An example Jupyter Notebook demonstrating how to use this package is available i
 - [[View on GitHub]](https://github.com/SuTong1999/agnSED/tree/main/example)
 
 ## Release Note
+(2026/3/31)
+Restored data/ directory.
 
 (2025/2/1)
 To avoid potential conflicts with our upcoming project, the data directory (located at src/agnSED/data/) has been temporarily removed. If you require access to this package, please contact me directly. I will be happy to provide the necessary files through private communication.
