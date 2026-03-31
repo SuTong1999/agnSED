@@ -3,7 +3,7 @@
 Contact sutong@bao.ac.cn/aosagnai@gmail.com for questions and collaborations. 
 
 This model is used to calculate the spectral energy distribution (SED) of BH accretion proccesses. The input parameters are BH mass and accretion rate. The accretion flow is divided into two regime based on the value of Eddington-normalized accretion rate - the ADAFs for low accretion rate objects and the modified magnetic reconnection-heated disk-corona model for high accretion rate objects.
-Detailed explanation and application on simulated galaxy catalog please refer to Su et al.2026. 
+Detailed explanation and application on simulated galaxy catalog please refer to Su et al. 2026. 
 
 ## Citation
 
