@@ -17,6 +17,15 @@ If you use this package in your research and publications, please cite:
 An example Jupyter Notebook demonstrating how to use this package is available in the github repository.
 - [[View on GitHub]](https://github.com/SuTong1999/agnSED/tree/main/example)
 
+## Command-line Install
+
+To install this package into your local pip-enabled python environment,
+```bash
+git clone https://github.com/SuTong1999/agnSED
+cd agnSED
+pip install .
+```
+
 ## Release Note
 (2026/3/31)
 Restored data/ directory.
