@@ -28,7 +28,8 @@ def Bolometric(sample, component=True, mcut=4, mdotcut=-12, npro=1):
     else:
         with Pool(processes=npro) as pool:
             logLnu = pool.map(SEDPool, data)
-        logL = np.array([np.log10(simpson(10**lum, x=10**lognu)) for lum in logLnu])
+            logLnu = np.array(logLnu)
+        logL = np.log10(simpson(10**logLnu, x=10**lognu, axis=1)) # integrate column-wise
         return logL
 
 def Photometric(sample, lognu0, lognu1, component=True, mcut=4, mdotcut=-12, npro=1):
@@ -59,8 +60,8 @@ def Photometric(sample, lognu0, lognu1, component=True, mcut=4, mdotcut=-12, npr
         logLnu_adaf[:,-1] = linear_interp(lognu1, lognu[k1-1], lognu[k1], logLnu_adaf[:,-2], logLnu_adaf[:,-1])
         logLnu_diskcor[:,0] = linear_interp(lognu0, lognu[k0], lognu[k0+1], logLnu_diskcor[:,0], logLnu_diskcor[:,1])
         logLnu_diskcor[:,-1] = linear_interp(lognu1, lognu[k1-1], lognu[k1], logLnu_diskcor[:,-2], logLnu_diskcor[:,-1])
-        logL_adaf = np.array([np.log10(simpson(10**logLnu, x=10**lognu_band)) for logLnu in logLnu_adaf])
-        logL_diskcor = np.array([np.log10(simpson(10**logLnu, x=10**lognu_band)) for logLnu in logLnu_diskcor])
+        logL_adaf = np.log10(simpson(10**logLnu_adaf, x=10**lognu_band, axis=1))
+        logL_diskcor = np.log10(simpson(10**logLnu_diskcor, x=10**lognu_band, axis=1))
         return logL_adaf, logL_diskcor
     else:
         with Pool(processes=npro) as pool:
@@ -68,7 +69,7 @@ def Photometric(sample, lognu0, lognu1, component=True, mcut=4, mdotcut=-12, npr
         logLnu = np.array(logLnu)
         logLnu[:,0] = linear_interp(lognu0, lognu[k0], lognu[k0+1], logLnu[:,0], logLnu[:,1])
         logLnu[:,-1] = linear_interp(lognu1, lognu[k1-1], lognu[k1], logLnu[:,-2], logLnu[:,-1])
-        logL = np.array([np.log10(simpson(10**lum, x=10**lognu_band)) for lum in logLnu])
+        logL = np.log10(simpson(10**logLnu, x=10**lognu_band, axis=1))
         return logL
 
 def LuminosityPerHerz(sample, lognu0, component=True, mcut=4, mdotcut=-12, npro=1):
@@ -99,3 +100,29 @@ def LuminosityPerHerz(sample, lognu0, component=True, mcut=4, mdotcut=-12, npro=
         logLnu = np.array(logLnu)
         logLnu = linear_interp(lognu0, lognu[k0], lognu[k0+1], logLnu[:,0], logLnu[:,1])
         return logLnu
+    
+def Photometric_sed(seds, lognu, lognu0, lognu1):
+    """ calculate the integrated luminosity in a frequency band from given seds"""
+    """ inputs: seds: input seds
+                lognu: frequency bins, has the same column number as the seds
+                [lognu0, lognu1]: edges of frequency band (in logarithm)"""   
+    k0 = np.sum(lognu<=lognu0) -1
+    k1 = len(lognu) - np.sum(lognu>=lognu1)
+    lognu_band = np.zeros(k1-k0+1)
+    lognu_band[0] = lognu0
+    lognu_band[-1]= lognu1
+    lognu_band[1:-1] = lognu[k0+1:k1]
+    logLnu = seds[:,k0:k1+1].copy()
+    logLnu[:,0] = linear_interp(lognu0, lognu[k0], lognu[k0+1], logLnu[:,0], logLnu[:,1])
+    logLnu[:,-1] = linear_interp(lognu1, lognu[k1-1], lognu[k1], logLnu[:,-2], logLnu[:,-1])
+    logL = np.log10(simpson(10**logLnu, x=10**lognu_band, axis=1))
+    return logL
+
+def LuminosityPerHerz_sed(seds, lognu, lognu0):
+    """ calculate the monochromatic luminosity at a frequency from given seds"""
+    """ inputs: seds: input seds
+                lognu: frequency bins, has the same column number as the seds
+                lognu0: frequency"""   
+    k0 = np.sum(lognu<=lognu0) -1
+    logLnu = linear_interp(lognu0, lognu[k0], lognu[k0+1], seds[:,k0], seds[:,k0+1])
+    return logLnu
